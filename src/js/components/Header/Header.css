@@ -1,0 +1,17 @@
+/* TODO: Find a better way to center it */
+#SettingsButton {
+  color: rgba(50, 50, 50, 0.3);
+  right: 0.3em;
+  float: left;
+  transform: translateY(40%);
+  transition: color 0.3s ease;
+}
+
+#SettingsButton:hover {
+  color: black;
+  transition: color 0.3s ease;
+}
+
+#Topic {
+  float: left;
+}

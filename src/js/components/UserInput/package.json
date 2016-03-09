@@ -1,0 +1,6 @@
+{
+  "name": "UserInput",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./UserInput.js"
+}
