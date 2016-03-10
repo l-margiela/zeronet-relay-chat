@@ -2,7 +2,7 @@
 #SettingsButton {
   color: rgba(50, 50, 50, 0.3);
   right: 0.3em;
-  float: left;
+  text-align: left;
   transform: translateY(40%);
   transition: color 0.3s ease;
 }
@@ -13,5 +13,12 @@
 }
 
 #Topic {
-  float: left;
+  text-align: left;
+}
+
+#Header {
+  position: fixed;
+  border-bottom: 1px black solid;
+  white-space: nowrap;
+  width: 99%;
 }

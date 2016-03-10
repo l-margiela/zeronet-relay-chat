@@ -1,8 +1,7 @@
 #Log {
   overflow: auto;
   max-height: 100%;
-}
-
-#Spacer {
-  height: 35px;
+  position: fixed;
+  top: 72px;
+  bottom: 63px;
 }
