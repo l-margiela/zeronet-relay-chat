@@ -48,7 +48,7 @@ export default class Log {
                     'cols': '1'
                   }, [h('span.muted.smaller.right', [moment.unix(source.date_added).fromNow()])]),
                   h('column', {
-                    'cols': '1'
+                    'cols': '0.5'
                   }, [h('span.bold.text-centered', [source.user])]),
                   h('column', {
                     'cols': '8'
