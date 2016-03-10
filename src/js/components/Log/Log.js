@@ -79,7 +79,8 @@ export default class Log {
     return h('div#Log', [
       this.mapping.results.map((component) => {
         return component.renderMaquette();
-      })
+      }),
+      h('div#Spacer', [])
     ]);
   };
 }
