@@ -15,14 +15,14 @@ export default class Log {
         "room": "zrc",
         "type": "message",
         "body": "Hello, there",
-        "date_added": Date.now()
+        "date_added": Date.now()/1000
       },
       {
         "user": "erkan",
         "room": "zrc",
         "type": "message",
         "body": "Lorem *ipsum* dolor sit amet, consectetur adipiscing elit. Sed in risus vehicula, porta ligula sed, pulvinar elit. Nulla euismod libero nec ~~risus~~ eleifend, a molestie ipsum luctus.",
-        "date_added": Date.now()
+        "date_added": Date.now()/1000
       }
     ];
 
