@@ -3,12 +3,14 @@
 let maquette = require("maquette");
 let h = maquette.h;
 
+import ZeroFrame from '../ZeroFrame';
 import Header from '../Header';
 import Log from '../Log';
 import UserInput from '../UserInput';
 
-export default class ZeroRelayChat {
+export default class ZeroRelayChat extends ZeroFrame {
   constructor() {
+    super();
     this.Header = new Header();
     this.Log = new Log();
     this.UserInput = new UserInput(this.messageHandler.bind(this));
