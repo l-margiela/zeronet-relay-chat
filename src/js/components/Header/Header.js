@@ -13,7 +13,7 @@ export default class Header {
     return h('div#Header',
     [
       h('a', {
-        'href': '/#SettingsPanel'
+        'href': '#SettingsPanel'
       }, [
         h('i.icono-caretRightCircle#SettingsButton.left.text-centered'),
       ]),

@@ -13,7 +13,7 @@ export default class Settings {
     return h('div#SettingsPanel',
     [
       h('a', {
-        'href': '/#'
+        'href': '#'
       }, [
         h('i.icono-caretLeftCircle#SettingsButton.right.text-centered'),
       ]),
