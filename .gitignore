@@ -31,3 +31,7 @@ build/
 
 ## Zeronet related
 content.json
+
+## Webpack related
+build
+bundle.js

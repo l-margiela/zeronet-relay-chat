@@ -15,7 +15,7 @@ export default class Settings {
       h('div#SettingsHeader', [
         h('h1#SettingsTitle', [this.Name]),
         h('a#SettingsBack', {
-          'href': '/#'
+          'href': '#'
         }, [
           h('i.icono-caretLeftCircle#SettingsButton'),
         ]),
