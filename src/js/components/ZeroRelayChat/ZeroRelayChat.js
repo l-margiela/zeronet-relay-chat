@@ -7,6 +7,7 @@ import ZeroFrame from '../ZeroFrame';
 import Header from '../Header';
 import Log from '../Log';
 import UserInput from '../UserInput';
+import Settings from '../Settings';
 
 export default class ZeroRelayChat extends ZeroFrame {
   constructor() {
@@ -14,6 +15,7 @@ export default class ZeroRelayChat extends ZeroFrame {
     this.Header = new Header();
     this.Log = new Log();
     this.UserInput = new UserInput(this.messageHandler.bind(this));
+    this.Settings = new Settings();
   }
 
   messageHandler(message, cb) {
@@ -25,7 +27,8 @@ export default class ZeroRelayChat extends ZeroFrame {
     return h("div#ZeroRelayChat", [
       this.Header.render(),
       this.Log.render(),
-      this.UserInput.render()
+      this.UserInput.render(),
+      this.Settings.render()
     ]);
   }
 }

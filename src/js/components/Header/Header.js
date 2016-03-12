@@ -12,7 +12,11 @@ export default class Header {
   render() {
     return h('div#Header',
     [
-      h('i.icono-gear#SettingsButton.left.text-centered'),
-      h('h1#Topic.title', ["Channel topic"])]);
+      h('a', {
+        'href': '/#SettingsPanel'
+      }, [
+        h('i.icono-caretRightCircle#SettingsButton.left.text-centered'),
+      ]),
+      h('h1#Topic.title', ["Testing Room"])]);
   }
 }

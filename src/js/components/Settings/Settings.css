@@ -1,0 +1,15 @@
+#SettingsPanel {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 400px;
+    background-color: white;
+    transform: scaleX(0.00001);
+    transform-origin: 0% 100%;
+    transition: transform 0.3s ease-in-out;
+    border-right: 1px lightgrey solid;
+}
+#SettingsPanel:target {
+    transform: scaleX(1);
+}
