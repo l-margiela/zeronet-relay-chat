@@ -7,6 +7,7 @@ export default class ZeroFrame {
     this.onCloseWebsocket = this.onCloseWebsocket.bind(this);
     this.url = url;
 		this.waiting_cb = {};
+		this.wrapper_nonce = document.location.href.replace(/.*wrapper_nonce=([A-Za-z0-9]+).*/, "$1");
 		this.connect();
 		this.next_message_id = 1;
 		this.init();
@@ -73,6 +74,7 @@ export default class ZeroFrame {
     if (cb == null) {
       cb = null;
     }
+		message.wrapper_nonce = this.wrapper_nonce;
     message.id = this.next_message_id;
     this.next_message_id += 1;
     this.target.postMessage(message, "*");
