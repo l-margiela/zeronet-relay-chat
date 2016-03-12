@@ -83,7 +83,7 @@ export default class ZeroFrame {
     }
   }
 
-	consoleLog(...args) {
+	log(...args) {
 		console.log("[ZeroFrame]", ...args);
   }
 
