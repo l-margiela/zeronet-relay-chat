@@ -1,8 +1,7 @@
-/* TODO: Find a better way to center it */
 #SettingsButton {
   color: rgba(50, 50, 50, 0.3);
   text-align: left;
-  margin: 0em 0.3em 0em 0.3em;
+  margin: 0.3em 0.3em 0.3em 0.3em;
   transition: color 0.1s ease;
 }
 
@@ -13,7 +12,9 @@
 
 #Topic {
   text-align: left;
-  margin-bottom: 0;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  margin-left: 10px;
 }
 
 #Header {
