@@ -23,6 +23,13 @@ export default class Log {
         "type": "message",
         "body": "Lorem *ipsum* dolor sit amet, consectetur adipiscing elit. Sed in risus vehicula, porta ligula sed, pulvinar elit. Nulla euismod libero nec ~~risus~~ eleifend, a molestie ipsum luctus.",
         "date_added": Date.now()/1000
+      },
+      {
+        "user": "server@server",
+        "room": "zrc",
+        "type": "message",
+        "body": "Loading messages...",
+        "date_added": Date.now()/1000
       }
     ];
 
@@ -64,12 +71,32 @@ export default class Log {
 
   addMessage(message) {
     window.projector.scheduleRender();
+    message["body"] = this.replaceURLs(message["body"]);
     this.messages.push(message);
     this.mapping.map(this.messages);
   }
 
   renderMarkdown(text, node) {
     node.innerHTML = this.md.render(text);
+  }
+
+  replaceURLs(body) {
+    const replacePattern0 = /(http:\/\/127.0.0.1:43110\/)/gi;
+    const replacePattern1 = /(\b(https?|ftp):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gim;
+    const replacePattern2 = /(^|[^\/])(www\.[\S]+(\b|$))/gim;
+    const replacePattern3 = /(([a-zA-Z0-9\-\_\.])+@[a-zA-Z\_]+?(\.[a-zA-Z]{2,6})+)/gim;
+    const replacePattern4 = /0net:\/\/([-a-zA-Z0-9+&@#+\/%?=~_|!:,.;]*)/g;
+    const replacePattern5 = /(([a-zA-Z0-9\-\_\.])+)\/\/0mail/gim;
+
+    let replacedText = body.replace(replacePattern0, '0net://');
+    replacedText = replacedText.replace('@zeroid.bit', '//0mail');
+    replacedText = replacedText.replace(replacePattern1, '<a href="$1" target="_blank" style="color: red; font-weight: bold;">$1</a>');
+    replacedText = replacedText.replace(replacePattern2, '$1<a href="http://$2" target="_blank" style="color: red; font-weight: bold;">$2</a>');
+    replacedText = replacedText.replace(replacePattern3, '<a href="mailto:$1" style="color: red; font-weight: bold;">$1</a>');
+    replacedText = replacedText.replace(replacePattern4, '<a href="http://127.0.0.1:43110/$1" target="_blank" style="color: green; font-weight: bold;">0net://$1</a>');
+    replacedText = replacedText.replace(replacePattern5, '<a href="http://127.0.0.1:43110/Mail.ZeroNetwork.bit/?to=$1" target="_blank" style="color: green; font-weight: bold;">$1@zeroid.bit</a>');
+
+    return replacedText;
   }
 
   newMessageAnimation(domNode, properties) {

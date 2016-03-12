@@ -26,7 +26,7 @@ export default class UserInput {
       e.target.style.height = Math.min(e.target.scrollHeight, 200) + "px";
     }
     else if(e.keyCode == 13) {
-      if(e.target.value === '') return;
+      if(e.target.value === '' || e.target.value === "\n") return;
       this.newMessageHandler({
         "user": "hhes",
         "room": "zrc",

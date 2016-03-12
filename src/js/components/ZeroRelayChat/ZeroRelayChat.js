@@ -18,11 +18,29 @@ export default class ZeroRelayChat extends ZeroFrame {
     this.Log = new Log();
     this.UserInput = new UserInput(this.messageHandler.bind(this));
     this.Settings = new Settings(this.Name);
+    this.loadMessages();
   }
 
   messageHandler(message, cb) {
     this.Log.addMessage(message);
     cb();
+  }
+
+  loadMessages () {
+    let query = "SELECT message.*, keyvalue.value AS cert_user_id FROM message\nLEFT JOIN json AS data_json USING (json_id)\nLEFT JOIN json AS content_json ON (\n    data_json.directory = content_json.directory AND content_json.file_name = 'content.json'\n)\nLEFT JOIN keyvalue ON (keyvalue.key = 'cert_user_id' AND keyvalue.json_id = content_json.json_id)\nORDER BY date_added";
+    this.cmd("dbQuery", [query], (messages) => {
+      for (let i = 0, len = messages.length; i < len; i++) {
+        let message = messages[i];
+        let message_json = {
+          "user": message.cert_user_id,
+          "room": "zrc",
+          "type": "message",
+          "body": message.body.replace(/</g, "&lt;").replace(/>/g, "&gt;"),
+          "date_added": message.date_added/1000,
+        }
+        this.Log.addMessage(message_json);
+      }
+    });
   }
 
   render() {
