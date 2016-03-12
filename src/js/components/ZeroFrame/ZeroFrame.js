@@ -1,11 +1,10 @@
 /*jshint esversion: 6 */
 export default class ZeroFrame {
-	constructor(url) {
+	constructor() {
     this.onMessage = this.onMessage.bind(this);
     this.route = this.route.bind(this);
     this.onOpenWebsocket = this.onOpenWebsocket.bind(this);
     this.onCloseWebsocket = this.onCloseWebsocket.bind(this);
-    this.url = url;
 		this.waiting_cb = {};
 		this.wrapper_nonce = document.location.href.replace(/.*wrapper_nonce=([A-Za-z0-9]+).*/, "$1");
 		this.connect();
@@ -96,4 +95,4 @@ export default class ZeroFrame {
   }
 }
 
-window.ZeroFrame = ZeroFrame;
+window.ZeroFrame = new ZeroFrame();
