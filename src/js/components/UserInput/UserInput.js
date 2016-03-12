@@ -21,7 +21,11 @@ export default class UserInput {
   }
 
   keyupHandler(e) {
-    if(e.keyCode == 13) { // Enter key
+    if(e.keyCode == 13 && e.shiftKey) {
+      e.target.style.height = "";
+      e.target.style.height = Math.min(e.target.scrollHeight, 200) + "px";
+    }
+    else if(e.keyCode == 13) {
       if(e.target.value === '') return;
       this.newMessageHandler({
         "user": "hhes",
@@ -29,14 +33,14 @@ export default class UserInput {
         "type": "message",
         "body": e.target.value,
         "date_added": moment().unix()
-      }, () => { e.target.value = '' });
+      }, () => { e.target.value = ''; e.target.style.height = "";});
     }
   }
 
   render() {
     return h("div#UserInput", [
-      h('input#MessageBox.input-big.width-12', {
-        'type': 'text',
+      h('textarea#MessageBox.input-big.width-12', {
+        'rows': '1',
         'placeholder': 'Write it down here',
         'onkeyup': this._keyupHandler
       })
