@@ -1,7 +1,11 @@
 /*jshint esversion: 6 */
 export default class ZeroFrame {
 	constructor(url) {
-		this.url = url;
+    this.onMessage = this.onMessage.bind(this);
+    this.route = this.route.bind(this);
+    this.onOpenWebsocket = this.onOpenWebsocket.bind(this);
+    this.onCloseWebsocket = this.onCloseWebsocket.bind(this);
+    this.url = url;
 		this.waiting_cb = {};
 		this.connect();
 		this.next_message_id = 1;
@@ -89,3 +93,5 @@ export default class ZeroFrame {
 		this.consoleLog("Websocket close");
   }
 }
+
+window.ZeroFrame = ZeroFrame;
