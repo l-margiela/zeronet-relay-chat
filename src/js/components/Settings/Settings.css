@@ -8,6 +8,7 @@
   transition: transform 0.3s ease-in-out;
   border-right: 1px lightgrey solid;
   background-color: white;
+  z-index: 150;
 }
 
 #SettingsPanel:target {
