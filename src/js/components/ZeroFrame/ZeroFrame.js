@@ -88,11 +88,11 @@ export default class ZeroFrame {
   }
 
 	onOpenWebsocket() {
-		this.consoleLog("Websocket open");
+		this.log("Websocket open");
   }
 
 	onCloseWebsocket() {
-		this.consoleLog("Websocket close");
+		this.log("Websocket close");
   }
 }
 
