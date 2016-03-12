@@ -1,15 +1,52 @@
 #SettingsPanel {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    width: 400px;
-    background-color: white;
-    transform: scaleX(0.00001);
-    transform-origin: 0% 100%;
-    transition: transform 0.3s ease-in-out;
-    border-right: 1px lightgrey solid;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 400px;
+  transform: translateX(-400px);
+  transition: transform 0.3s ease-in-out;
+  border-right: 1px lightgrey solid;
+  background-color: white;
 }
+
 #SettingsPanel:target {
-    transform: scaleX(1);
+  transform: translateX(0);
+}
+
+#SettingsTitle {
+  position: relative;
+  font-weight: 300;
+  margin-bottom: 0;
+  float: left;
+}
+
+#SettingsBackButton {
+  color: rgba(50, 50, 50, 0.3);
+  text-align: right;
+  margin: 0.3em 0.3em 0.3em 0.3em;
+  transition: color 0.1s ease;
+}
+
+#SettingsBackButton:hover {
+  color: black;
+  transition: color 0.1s ease;
+}
+
+#SettingsBack {
+  position: relative;
+  float: right;
+  height: 40px;
+  width: 40px;
+}
+
+#SettingsHeader {
+  margin: auto;
+  position: relative;
+  white-space: nowrap;
+  height: 50px;
+  width: 90%;
+  border-bottom: 1px lightgrey solid;
+  display: flex;
+  align-items: center;
 }

@@ -7,7 +7,7 @@
 
 #SettingsButton:hover {
   color: black;
-  transition: color 0.3s ease;
+  transition: color 0.1s ease;
 }
 
 #Topic {
@@ -15,6 +15,16 @@
   margin-bottom: 10px;
   margin-top: 10px;
   margin-left: 10px;
+  font-weight: 300;
+}
+
+#Description {
+  margin-bottom: 0;
+  margin-left: 10px;
+  white-space: normal;
+  max-width: 50%;
+  max-height: 77px;
+  overflow: hidden;
 }
 
 #Header {

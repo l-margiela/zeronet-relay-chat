@@ -5,8 +5,9 @@ let maquette = require("maquette");
 let h = maquette.h;
 
 export default class Header {
-  constructor() {
-
+  constructor(name, desc) {
+    this.Name = name;
+    this.Description = desc;
   }
 
   render() {
@@ -17,6 +18,8 @@ export default class Header {
       }, [
         h('i.icono-caretRightCircle#SettingsButton.left.text-centered'),
       ]),
-      h('h1#Topic.title', ["Testing Room"])]);
+      h('h1#Topic.title', [this.Name]),
+      h('p#Description', [this.Description]),
+    ]);
   }
 }

@@ -12,10 +12,12 @@ import Settings from '../Settings';
 export default class ZeroRelayChat extends ZeroFrame {
   constructor() {
     super();
-    this.Header = new Header();
+    this.Name = 'Testing';
+    this.Description = 'A room where I can test all of the latest changes.'
+    this.Header = new Header(this.Name, this.Description);
     this.Log = new Log();
     this.UserInput = new UserInput(this.messageHandler.bind(this));
-    this.Settings = new Settings();
+    this.Settings = new Settings(this.Name);
   }
 
   messageHandler(message, cb) {
