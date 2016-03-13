@@ -56,7 +56,7 @@ export default class Log {
                   }, [h('span.muted.smaller.right', [moment.unix(source.date_added).fromNow()])]),
                   h('column', {
                     'cols': '0.5'
-                  }, [h('span.bold.text-centered', [source.user])]),
+                  }, [h('span.bold.text-centered', {'title': source.user}, [this.filterUsername(source.user)])]),
                   h('column', {
                     'cols': '8'
                   }, [h('div.message-body', { 'afterCreate': renderMarkdown }, [source.body])])
@@ -71,7 +71,6 @@ export default class Log {
 
   addMessage(message) {
     window.projector.scheduleRender();
-    message["body"] = this.replaceURLs(message["body"]);
     this.messages.push(message);
     this.mapping.map(this.messages);
   }
@@ -80,23 +79,12 @@ export default class Log {
     node.innerHTML = this.md.render(text);
   }
 
-  replaceURLs(body) {
-    const replacePattern0 = /(http:\/\/127.0.0.1:43110\/)/gi;
-    const replacePattern1 = /(\b(https?|ftp):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gim;
-    const replacePattern2 = /(^|[^\/])(www\.[\S]+(\b|$))/gim;
-    const replacePattern3 = /(([a-zA-Z0-9\-\_\.])+@[a-zA-Z\_]+?(\.[a-zA-Z]{2,6})+)/gim;
-    const replacePattern4 = /0net:\/\/([-a-zA-Z0-9+&@#+\/%?=~_|!:,.;]*)/g;
-    const replacePattern5 = /(([a-zA-Z0-9\-\_\.])+)\/\/0mail/gim;
-
-    let replacedText = body.replace(replacePattern0, '0net://');
-    replacedText = replacedText.replace('@zeroid.bit', '//0mail');
-    replacedText = replacedText.replace(replacePattern1, '<a href="$1" target="_blank" style="color: red; font-weight: bold;">$1</a>');
-    replacedText = replacedText.replace(replacePattern2, '$1<a href="http://$2" target="_blank" style="color: red; font-weight: bold;">$2</a>');
-    replacedText = replacedText.replace(replacePattern3, '<a href="mailto:$1" style="color: red; font-weight: bold;">$1</a>');
-    replacedText = replacedText.replace(replacePattern4, '<a href="http://127.0.0.1:43110/$1" target="_blank" style="color: green; font-weight: bold;">0net://$1</a>');
-    replacedText = replacedText.replace(replacePattern5, '<a href="http://127.0.0.1:43110/Mail.ZeroNetwork.bit/?to=$1" target="_blank" style="color: green; font-weight: bold;">$1@zeroid.bit</a>');
-
-    return replacedText;
+  filterUsername(username) {
+    if(username.endsWith('@zeroid.bit')) {
+      return username.replace('@zeroid.bit', '');
+    } else {
+      return username;
+    }
   }
 
   newMessageAnimation(domNode, properties) {
