@@ -18,13 +18,17 @@ export default class ZeroRelayChat extends ZeroFrame {
     this.Header = new Header(this.Name, this.Description);
     this.Log = new Log();
     this.UserInput = new UserInput(this.messageHandler.bind(this));
-    this.Settings = new Settings(this.Name, this.currentID);
+    this.Settings = new Settings(this.Name, this.currentID, this.cmdHandler.bind(this));
     this.loadMessages();
   }
 
   messageHandler(message, cb) {
     this.Log.addMessage(message);
     cb();
+  }
+
+  cmdHandler(cmd, data, cb) {
+    this.cmd(cmd, data, cb);
   }
 
   loadMessages () {
@@ -63,12 +67,12 @@ export default class ZeroRelayChat extends ZeroFrame {
 
   onOpenWebsocket(e) {
     this.cmd("siteInfo", {}, (siteInfo) => {
-            if (siteInfo.cert_user_id) {
-              console.log("Id changed");
-                this.currentID = siteInfo.cert_user_id;
-                window.projector.scheduleRender();
-                console.log(this.currentID);
-            }
-        });
-    }
+      if (siteInfo.cert_user_id) {
+        console.log("Id changed");
+        this.currentID = siteInfo.cert_user_id;
+        window.projector.scheduleRender();
+        console.log(this.currentID);
+      }
+    });
+  }
 }

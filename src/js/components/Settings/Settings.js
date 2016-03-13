@@ -5,14 +5,23 @@ let maquette = require("maquette");
 let h = maquette.h;
 
 export default class Settings {
-  constructor(name, currentID) {
+  constructor(name, currentID, cmdHandler) {
     this.Name = name;
     this.currentID = currentID;
     console.log(this.currentID);
+    this.cmdHandler = cmdHandler;
+  }
+
+  get newCmdHandler() {
+    return this._newCmdHandler;
+  }
+
+  set newCmdHandler(cmdHandler) {
+    this._newCmdHandler = cmdHandler;
   }
 
   selectID(e) {
-    window.ZeroFrame.cmd("certSelect", [["zeroid.bit"]]);
+    this.cmdHandler("certSelect", [["zeroid.bit"]], () => {});
   }
 
   render(currentID) {
