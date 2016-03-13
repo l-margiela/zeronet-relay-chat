@@ -12,12 +12,13 @@ import Settings from '../Settings';
 export default class ZeroRelayChat extends ZeroFrame {
   constructor() {
     super();
+    this.currentID = undefined;
     this.Name = 'Testing';
     this.Description = 'A room where I can test all of the latest changes.'
     this.Header = new Header(this.Name, this.Description);
     this.Log = new Log();
     this.UserInput = new UserInput(this.messageHandler.bind(this));
-    this.Settings = new Settings(this.Name);
+    this.Settings = new Settings(this.Name, this.currentID);
     this.loadMessages();
   }
 
@@ -48,7 +49,26 @@ export default class ZeroRelayChat extends ZeroFrame {
       this.Header.render(),
       this.Log.render(),
       this.UserInput.render(),
-      this.Settings.render()
+      this.Settings.render(this.currentID)
     ]);
   }
+
+  route(command, message) {
+    if(command === "setSiteInfo") {
+      if(message.params.cert_user_id) {
+        this.currentID = message.params.cert_user_id;
+      }
+    }
+  }
+
+  onOpenWebsocket(e) {
+    this.cmd("siteInfo", {}, (siteInfo) => {
+            if (siteInfo.cert_user_id) {
+              console.log("Id changed");
+                this.currentID = siteInfo.cert_user_id;
+                window.projector.scheduleRender();
+                console.log(this.currentID);
+            }
+        });
+    }
 }

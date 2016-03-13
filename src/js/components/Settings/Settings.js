@@ -5,11 +5,18 @@ let maquette = require("maquette");
 let h = maquette.h;
 
 export default class Settings {
-  constructor(name) {
+  constructor(name, currentID) {
     this.Name = name;
+    this.currentID = currentID;
+    console.log(this.currentID);
   }
 
-  render() {
+  selectID(e) {
+    window.ZeroFrame.cmd("certSelect", [["zeroid.bit"]]);
+  }
+
+  render(currentID) {
+    console.log("Settings rerendered");
     return h('div#SettingsPanel',
     [
       h('div#SettingsHeader', [
@@ -19,6 +26,10 @@ export default class Settings {
         }, [
           h('i.icono-caretLeftCircle#SettingsButton'),
         ]),
+      ]),
+      h('div#SelectID', [
+        h('hr'),
+        h('button', { type: "primary", outline: "" , onclick: this.selectID }, [currentID ? currentID : "Select ID"])
       ])
     ]);
   }

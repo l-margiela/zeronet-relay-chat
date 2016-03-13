@@ -8,7 +8,6 @@
   transition: transform 0.3s ease-in-out;
   border-right: 1px lightgrey solid;
   background-color: white;
-  z-index: 150;
 }
 
 #SettingsPanel:target {
@@ -50,4 +49,16 @@
   border-bottom: 1px lightgrey solid;
   display: flex;
   align-items: center;
+}
+
+#SelectID {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+#SelectID button {
+  margin: 0 auto;
+  margin-bottom: 1em;
+  display:block
+  /*text-align: center;*/
 }
