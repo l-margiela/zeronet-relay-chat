@@ -8,24 +8,26 @@ export default class Settings {
   constructor(name, currentID, cmdHandler) {
     this.Name = name;
     this.currentID = currentID;
-    console.log(this.currentID);
+    console.log("cmdHandler at Settings:\n" + cmdHandler);
     this.newCmdHandler = cmdHandler;
   }
 
   get newCmdHandler() {
+    console.log("inside get:\n" + this._newCmdHandler);
     return this._newCmdHandler;
   }
 
   set newCmdHandler(cmdHandler) {
+    console.log("inside set:\n" + cmdHandler);
     this._newCmdHandler = cmdHandler;
   }
 
   selectID(e) {
+    console.log("cmdHandler at selectID():\n" + this.newCmdHandler);
     this.newCmdHandler("certSelect", [["zeroid.bit"]], () => {});
   }
 
   render(currentID) {
-    console.log("Settings rerendered");
     return h('div#SettingsPanel',
     [
       h('div#SettingsHeader', [

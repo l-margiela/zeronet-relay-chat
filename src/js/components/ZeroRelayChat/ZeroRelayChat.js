@@ -18,6 +18,7 @@ export default class ZeroRelayChat extends ZeroFrame {
     this.Header = new Header(this.Name, this.Description);
     this.Log = new Log();
     this.UserInput = new UserInput(this.messageHandler.bind(this));
+    console.log("cmdHandler at ZRC:\n" + this.cmdHandler.bind(this));
     this.Settings = new Settings(this.Name, this.currentID, this.cmdHandler.bind(this));
     this.loadMessages();
   }
@@ -68,10 +69,8 @@ export default class ZeroRelayChat extends ZeroFrame {
   onOpenWebsocket(e) {
     this.cmd("siteInfo", {}, (siteInfo) => {
       if (siteInfo.cert_user_id) {
-        console.log("Id changed");
         this.currentID = siteInfo.cert_user_id;
         window.projector.scheduleRender();
-        console.log(this.currentID);
       }
     });
   }
