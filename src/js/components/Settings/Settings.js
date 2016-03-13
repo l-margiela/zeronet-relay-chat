@@ -9,7 +9,7 @@ export default class Settings {
     this.Name = name;
     this.currentID = currentID;
     console.log(this.currentID);
-    this.cmdHandler = cmdHandler;
+    this.newCmdHandler = cmdHandler;
   }
 
   get newCmdHandler() {
@@ -21,7 +21,7 @@ export default class Settings {
   }
 
   selectID(e) {
-    this.cmdHandler("certSelect", [["zeroid.bit"]], () => {});
+    this.newCmdHandler("certSelect", [["zeroid.bit"]], () => {});
   }
 
   render(currentID) {
