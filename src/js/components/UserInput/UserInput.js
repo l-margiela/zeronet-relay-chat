@@ -26,12 +26,21 @@ export default class UserInput {
       e.target.style.height = Math.min(e.target.scrollHeight, 200) + "px";
     }
     else if(e.keyCode == 13) {
-      if(e.target.value === '' || e.target.value === "\n") return;
+      let value = e.target.value;
+      let type = 'message';
+      if(value === '' || value === "\n" || value === "/me") {
+        e.target.value = '';
+        return;
+      }
+      if(value.startsWith('/me ')) {
+        type = 'action';
+        value = value.slice(4);
+      }
       this.newMessageHandler({
         "user": "hhes",
         "room": "zrc",
-        "type": "message",
-        "body": e.target.value,
+        "type": type,
+        "body": value,
         "date_added": moment().unix()
       }, () => { e.target.value = ''; e.target.style.height = "";});
     }
